@@ -1,0 +1,47 @@
+{
+  "size": 5957,
+  "items": [
+    {},
+    {
+      "image": {
+        "scalable": true,
+        "type": "GENERAL",
+        "url": "2017/7/vertical-2/19/3/100/464/_1229205040.jpg"
+      },
+      "score": "0.7926514744758606",
+      "ad-type": "REALESTATE",
+      "price": {
+        "value": 11900
+      },
+      "description": "RODELØKKA: Trivelig 2-roms med balkong. Inkl: hvitevarer, internett, kabel-tv og trappevask. Mulighet for leie av garasjeplass. Velkommen til visning søndag 1. oktober kl. 14:00!",
+      "location": "Oslo",
+      "id": "100464613",
+      "type": "AD",
+      "tracking": {
+        "adobe": {
+          "event_name": "meta_recommendation",
+          "type": "stream",
+          "category": "relevant_ad",
+          "url": "https://apps.finn.no/api/stream/discover/"
+        },
+        "ec": {
+          "inScreen": [
+            "https://www.finn.no/ec/USER/recommendationEvents?adIds=100464613&version=finn_meta_discovery_2b&recsys.uuid=80ec2f0c-44c9-435a-aeec-99e164304de9&recsys.position=recommend.app-discover.inScreen"
+          ],
+          "click": [
+            "https://www.finn.no/ec/AD/NoOfPageViews_Main?finnkode=100464613",
+            "https://www.finn.no/ec/USER/recommendationEvents?finnkode=100464613&version=finn_meta_discovery_2b&recsys.uuid=80ec2f0c-44c9-435a-aeec-99e164304de9&recsys.position=recommend.app-discover.click"
+          ]
+        }
+      },
+      "actions": {
+        "block": [
+          "https://www.finn.no/ec/USER/recommend.block?finnkode=100464613&version=finn_meta_discovery_2b&recsys.uuid=80ec2f0c-44c9-435a-aeec-99e164304de9&recsys.position=recommend.app-discover"
+        ]
+      },
+      "version": "finn_meta_discovery_2b.finn_real_estate_als_r150.recommendItems"
+    }
+  ],
+  "version": "finn_meta_discovery_2b",
+  "uuid": "80ec2f0c-44c9-435a-aeec-99e164304de9"
+}
