@@ -1,16 +1,21 @@
 package me.tadej.finn.dagger
 
+import android.arch.persistence.room.Room
 import android.content.Context
 import dagger.Module
 import dagger.Provides
 import me.tadej.finn.misc.ImageUrlGenerator
 import me.tadej.finn.misc.getCacheSize
 import me.tadej.finn.model.Ad
+import me.tadej.finn.repo.FavouritesRepository
+import me.tadej.finn.repo.favs.FavouritesDatabase
+import me.tadej.finn.repo.favs.SimpleFavouritesRepository
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Singleton
+
 
 @Module
 class AppModule(private val context: Context) {
@@ -33,5 +38,13 @@ class AppModule(private val context: Context) {
         return "https://images.finncdn.no/dynamic/480x360c/" + ad.imageUrl()
       }
     }
+  }
+
+  @Provides @Singleton fun providesFavouritesRepository(): FavouritesRepository {
+    val database = Room.databaseBuilder(context,
+        FavouritesDatabase::class.java,
+        "favourites"
+    ).build()
+    return SimpleFavouritesRepository(database)
   }
 }

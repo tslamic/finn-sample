@@ -10,9 +10,8 @@ class SimpleAdFactory @Inject constructor() : AdFactory {
       image: String,
       price: Long,
       location: String,
-      description: String,
-      json: String
+      description: String
   ): Ad {
-    return SimpleAd(id, image, price, location, description, json)
+    return SimpleAd(id, image, price, location, description)
   }
 }

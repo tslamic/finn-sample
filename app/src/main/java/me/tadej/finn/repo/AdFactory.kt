@@ -8,7 +8,6 @@ interface AdFactory {
       image: String,
       price: Long,
       location: String,
-      description: String,
-      json: String
+      description: String
   ): Ad
 }

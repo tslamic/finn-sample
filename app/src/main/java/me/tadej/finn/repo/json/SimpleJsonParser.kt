@@ -54,8 +54,7 @@ class SimpleJsonParser @Inject constructor(
     val price = jsonObject.optJSONObject(KEY_PRICE)?.optLong(KEY_VALUE) ?: 0L
     val location = jsonObject.optString(KEY_LOCATION)
     val description = jsonObject.optString(KEY_DESCRIPTION)
-    val json = jsonObject.toString()
-    return factory.create(id, image, price, location, description, json)
+    return factory.create(id, image, price, location, description)
   }
 
   private fun JSONArray?.isNullOrEmpty(): Boolean {
