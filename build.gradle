@@ -1,0 +1,88 @@
+buildscript {
+  ext.buildConfig = [
+      'compileSdk': 27,
+      'minSdk': 24,
+      'targetSdk': 27,
+
+      'version': [
+          'major': 0,
+          'minor': 1,
+          'patch': 0,
+          'build': 0,
+      ],
+  ]
+
+  ext.buildConfig.version['name'] =
+      "${buildConfig.version.major}.${buildConfig.version.minor}.${buildConfig.version.patch}"
+  ext.buildConfig.version['code'] =
+      buildConfig.version.major * 1000000 + buildConfig.version.minor * 10000 + buildConfig.version.patch * 100 + buildConfig.version.build
+
+  ext.versions = [
+      'lifecycle': '1.1.1',
+      'room': '1.1.0',
+      'navigation': '1.0.0-alpha01',
+      'constraintLayout': '1.1.0',
+      'supportLibrary': '27.1.1',
+      'glide': '4.7.1',
+      'kotlin': '1.2.41',
+      'dagger': '2.16',
+  ]
+
+  repositories {
+    google()
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:3.1.2'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+    classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:${versions.navigation}"
+  }
+}
+
+allprojects {
+  repositories {
+    google()
+    jcenter()
+  }
+}
+
+configurations.all {
+  resolutionStrategy {
+    eachDependency { details ->
+      if (details.requested.group == 'com.android.support') {
+        details.useVersion versions.supportLibrary
+      }
+    }
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
+
+def gitSha() {
+  def f = new File(buildDir, "commit-sha.txt")
+  if (!f.exists()) {
+    def p = 'git rev-parse HEAD'.execute([], project.rootDir)
+    if (p.waitFor() != 0) {
+      throw new RuntimeException(p.errorStream.text)
+    }
+    f.parentFile.mkdirs()
+    f.text = p.text.trim()
+  }
+  return f.text.trim()
+}
+
+def gitTimestamp() {
+  def f = new File(buildDir, "commit-timestamp.txt")
+  if (!f.exists()) {
+    def p = 'git log -n 1 --format=%at'.execute([], rootDir)
+    if (p.waitFor() != 0) {
+      throw new RuntimeException(p.errorStream.text)
+    }
+    f.parentFile.mkdirs()
+    f.text = p.text.trim()
+  }
+  return f.text.trim()
+}

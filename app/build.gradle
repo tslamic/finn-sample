@@ -1,0 +1,100 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'findbugs'
+
+android {
+  compileSdkVersion buildConfig.compileSdk
+
+  defaultConfig {
+    applicationId "me.tadej.finn"
+
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+    versionCode buildConfig.version.code
+    versionName buildConfig.version.name
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  lintOptions {
+    textReport true
+    textOutput 'stdout'
+    lintConfig rootProject.file('lint.xml')
+
+    checkDependencies true
+    checkTestSources true
+    explainIssues false
+
+    checkReleaseBuilds false
+  }
+}
+
+kotlin {
+  experimental {
+    coroutines 'enable'
+  }
+}
+
+task findbugs(type: FindBugs) {
+  group 'findbugs'
+
+  effort = "max"
+  ignoreFailures = false
+
+  classes = files("build/intermediates/javac")
+  excludeFilter = file("$rootDir/findbugs-exclude.xml")
+  source = fileTree('src/main/java/')
+  classpath = files()
+
+  reports {
+    xml.enabled = false
+    html.enabled = true
+  }
+}
+
+dependencies {
+  // Jetpack
+  implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
+  implementation "android.arch.navigation:navigation-fragment:$versions.navigation"
+  implementation "android.arch.navigation:navigation-ui:$versions.navigation"
+  implementation "android.arch.persistence.room:runtime:$versions.room"
+  kapt "android.arch.persistence.room:compiler:$versions.room"
+
+  // Support
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+  implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
+  implementation "com.android.support:appcompat-v7:$versions.supportLibrary"
+  implementation "com.android.support:appcompat-v7:$versions.supportLibrary"
+  implementation "com.android.support:design:$versions.supportLibrary"
+
+  // Dagger2
+  implementation "com.google.dagger:dagger:${versions.dagger}"
+  kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+
+  // Other
+  implementation "com.github.bumptech.glide:glide:${versions.glide}"
+  kapt "com.github.bumptech.glide:compiler:${versions.glide}"
+
+  // Tests
+  testImplementation 'junit:junit:4.12'
+  testImplementation 'org.json:json:20160212'
+
+  // Integration tests
+  androidTestImplementation 'com.android.support.test:runner:1.0.2'
+  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
