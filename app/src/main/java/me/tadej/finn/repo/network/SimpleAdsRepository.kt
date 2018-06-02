@@ -49,7 +49,7 @@ class SimpleAdsRepository @Inject constructor(
       Response.failure(ex)
     }
 
-    data.value = response
+    data.postValue(response)
   }
 
   private fun okhttp3.Response.bodyAsString() = this.body()?.string() ?: ""

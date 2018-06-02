@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/main">
+    app:startDestination="@+id/main">
 
   <fragment
       android:id="@+id/main"
@@ -12,6 +12,9 @@
     <action
         android:id="@+id/show_details"
         app:destination="@id/details" />
+    <action
+        android:id="@+id/action_main_to_favourites"
+        app:destination="@id/favourites" />
   </fragment>
 
   <fragment
