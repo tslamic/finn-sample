@@ -93,6 +93,7 @@ dependencies {
   // Tests
   testImplementation 'junit:junit:4.12'
   testImplementation 'org.json:json:20160212'
+  testImplementation "com.google.truth:truth:0.40"
 
   // Integration tests
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
