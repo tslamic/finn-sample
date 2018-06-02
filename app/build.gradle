@@ -95,6 +95,8 @@ dependencies {
   testImplementation 'junit:junit:4.12'
   testImplementation 'org.json:json:20160212'
   testImplementation "com.google.truth:truth:0.40"
+  testImplementation "android.arch.core:core-testing:1.1.1"
+  testImplementation "org.mockito:mockito-core:2.18.3"
 
   // Integration tests
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
