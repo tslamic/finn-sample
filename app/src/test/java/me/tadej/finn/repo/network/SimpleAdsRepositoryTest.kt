@@ -17,7 +17,7 @@ class SimpleAdsRepositoryTest {
   @Rule @JvmField val instantExecutorRule = InstantTaskExecutorRule()
 
   private val executor = Executor { runnable -> runnable?.run() }
-  private val parser = SimpleJsonParser(SimpleAdFactory)
+  private val parser = SimpleJsonParser(SimpleAdFactory())
   private val client = mock(OkHttpClient::class.java)
 
   private val repository = SimpleAdsRepository(executor, parser, client)

@@ -4,6 +4,7 @@ import me.tadej.finn.model.Ad
 import me.tadej.finn.repo.AdFactory
 import org.json.JSONArray
 import org.json.JSONObject
+import javax.inject.Inject
 
 private const val KEY_ITEMS = "items"
 private const val KEY_ID = "id"
@@ -14,7 +15,9 @@ private const val KEY_VALUE = "value"
 private const val KEY_LOCATION = "location"
 private const val KEY_DESCRIPTION = "description"
 
-class SimpleJsonParser(private val factory: AdFactory) : JsonParser {
+class SimpleJsonParser @Inject constructor(
+    private val factory: AdFactory
+) : JsonParser {
   override fun parse(json: String?): List<Ad> {
     if (json.isNullOrEmpty()) {
       return emptyList()

@@ -7,7 +7,7 @@ import me.tadej.finn.repo.factory.SimpleAdFactory
 import org.junit.Test
 
 class SimpleJsonParserTest {
-  private val factory: AdFactory = SimpleAdFactory
+  private val factory: AdFactory = SimpleAdFactory()
   private val parser = SimpleJsonParser(factory)
 
   @Test
