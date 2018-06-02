@@ -1,10 +1,10 @@
-package me.tadej.finn
+package me.tadej.finn.ui.main
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import me.tadej.finn.R
 
 class MainActivity : AppCompatActivity() {
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)

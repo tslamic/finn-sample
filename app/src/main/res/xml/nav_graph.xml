@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/main">
+
+  <fragment
+      android:id="@+id/main"
+      android:name="me.tadej.finn.ui.main.MainFragment"
+      android:label="@string/ads"
+      tools:layout="@layout/fragment_main">
+    <action
+        android:id="@+id/show_details"
+        app:destination="@id/details" />
+  </fragment>
+
+  <fragment
+      android:id="@+id/details"
+      android:name="me.tadej.finn.ui.details.DetailsFragment"
+      android:label="@string/details"
+      tools:layout="@layout/fragment_details" />
+
+  <fragment
+      android:id="@+id/favourites"
+      android:name="me.tadej.finn.ui.favourites.FavouritesFragment"
+      android:label="@string/favourites"
+      tools:layout="@layout/fragment_favourites" />
+
+</navigation>
