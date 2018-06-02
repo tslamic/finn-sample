@@ -6,7 +6,9 @@ import me.tadej.finn.dagger.AppModule
 import me.tadej.finn.dagger.DaggerAppComponent
 
 class App : Application() {
-  private lateinit var component: AppComponent
+  lateinit var component: AppComponent
+    private set
+
 
   override fun onCreate() {
     super.onCreate()
