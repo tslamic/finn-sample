@@ -1,14 +1,10 @@
 package me.tadej.finn.repo.json
 
 import com.google.common.truth.Truth.assertThat
-import me.tadej.finn.readResource
+import me.tadej.finn.JsonResources
 import me.tadej.finn.repo.AdFactory
 import me.tadej.finn.repo.factory.SimpleAdFactory
 import org.junit.Test
-
-private const val DISCOVER_FULL = "discover-full.json"
-private const val DISCOVER_PARTIAL = "discover-partial.json"
-private const val DISCOVER_CORRUPTED = "discover-corrupted.json"
 
 class SimpleJsonParserTest {
   private val factory: AdFactory = SimpleAdFactory
@@ -28,28 +24,28 @@ class SimpleJsonParserTest {
 
   @Test
   fun parse_withPartialJsonFile_assertSize() {
-    val json = readResource(DISCOVER_PARTIAL)
+    val json = JsonResources.PARTIAL.asJson()
     val ads = parser.parse(json)
     assertThat(ads).hasSize(2)
   }
 
   @Test
   fun parse_withFullJsonFile_assertSize() {
-    val json = readResource(DISCOVER_FULL)
+    val json = JsonResources.FULL.asJson()
     val ads = parser.parse(json)
     assertThat(ads).hasSize(1000)
   }
 
   @Test
   fun parse_withCorruptedJson_assertSize() {
-    val json = readResource(DISCOVER_CORRUPTED)
+    val json = JsonResources.CORRUPTED.asJson()
     val ads = parser.parse(json)
     assertThat(ads).hasSize(1)
   }
 
   @Test
   fun parse_withPartialJsonFile_assertAd() {
-    val json = readResource(DISCOVER_PARTIAL)
+    val json = JsonResources.PARTIAL.asJson()
     val ads = parser.parse(json)
     val ad = ads[0]
 
