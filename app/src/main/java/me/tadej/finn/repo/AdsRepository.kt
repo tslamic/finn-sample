@@ -4,6 +4,5 @@ import android.arch.lifecycle.LiveData
 import me.tadej.finn.model.Ad
 
 interface AdsRepository {
-  fun all(page: Int = 1): LiveData<List<Ad>>
-  fun favourites(page: Int = 1): LiveData<List<Ad>>
+  fun all(page: Int = 1): LiveData<Response<List<Ad>>>
 }
