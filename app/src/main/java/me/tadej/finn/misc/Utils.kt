@@ -1,6 +1,6 @@
 @file:JvmName("Utils")
 
-package me.tadej.finn.util
+package me.tadej.finn.misc
 
 import android.app.ActivityManager
 import android.content.Context

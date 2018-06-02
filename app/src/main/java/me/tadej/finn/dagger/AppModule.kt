@@ -3,7 +3,9 @@ package me.tadej.finn.dagger
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import me.tadej.finn.util.getCacheSize
+import me.tadej.finn.misc.ImageUrlGenerator
+import me.tadej.finn.misc.getCacheSize
+import me.tadej.finn.model.Ad
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import java.util.concurrent.Executor
@@ -23,5 +25,13 @@ class AppModule(private val context: Context) {
     return OkHttpClient.Builder()
         .cache(cache)
         .build()
+  }
+
+  @Provides @Singleton fun providesImageUrlGenerator(): ImageUrlGenerator {
+    return object : ImageUrlGenerator {
+      override fun generateUrl(ad: Ad): String {
+        return "https://images.finncdn.no/dynamic/480x360c/" + ad.imageUrl()
+      }
+    }
   }
 }
