@@ -70,15 +70,11 @@ task findbugs(type: FindBugs) {
 dependencies {
   // Jetpack
   implementation "android.arch.lifecycle:extensions:$versions.lifecycle"
-  implementation "android.arch.navigation:navigation-fragment:$versions.navigation"
-  implementation "android.arch.navigation:navigation-ui:$versions.navigation"
   implementation "android.arch.persistence.room:runtime:$versions.room"
   kapt "android.arch.persistence.room:compiler:$versions.room"
 
   // Support
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
-  implementation "com.android.support.constraint:constraint-layout:$versions.constraintLayout"
-  implementation "com.android.support:appcompat-v7:$versions.supportLibrary"
   implementation "com.android.support:appcompat-v7:$versions.supportLibrary"
   implementation "com.android.support:design:$versions.supportLibrary"
 

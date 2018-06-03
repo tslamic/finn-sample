@@ -9,7 +9,6 @@ class App : Application() {
   lateinit var component: AppComponent
     private set
 
-
   override fun onCreate() {
     super.onCreate()
     component = DaggerAppComponent.builder()

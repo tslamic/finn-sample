@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package me.tadej.finn.dagger
 
 import dagger.Binds
