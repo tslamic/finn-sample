@@ -14,6 +14,12 @@ import javax.inject.Inject
 private const val URL =
     "https://gist.githubusercontent.com/3lvis/3799feea005ed49942dcb56386ecec2b/raw/63249144485884d279d55f4f3907e37098f55c74/discover.json"
 
+/**
+ * Similarly as with SimpleJsonParser, I've made a bold decision
+ * to avoid e.g. Retrofit, as I'm only hitting a single endpoint.
+ * This obviously doesn't scale well, and if we were to introduce
+ * a richer set of APIs, the implementation would have to change.
+ */
 class SimpleAdsRepository @Inject constructor(
     private val executor: Executor,
     private val parser: JsonParser,

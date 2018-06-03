@@ -7,7 +7,8 @@ import android.content.Context
 import android.content.pm.ApplicationInfo.FLAG_LARGE_HEAP
 
 /**
- * Returns a bit more than 5% of the available memory resources.
+ * Returns a bit more than 5% of the available memory resources on a device.
+ *
  * Shamelessly stolen from Picasso library:
  *   https://github.com/square/picasso/blob/master/picasso/src/main/java/com/squareup/picasso3/Utils.java
  */

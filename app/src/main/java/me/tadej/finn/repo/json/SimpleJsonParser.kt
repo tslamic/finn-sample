@@ -15,6 +15,14 @@ private const val KEY_VALUE = "value"
 private const val KEY_LOCATION = "location"
 private const val KEY_DESCRIPTION = "description"
 
+/**
+ * Here be dragons!
+ *
+ * Well, not really. Since there's only a single file to be parsed,
+ * and because I've made a tacticool decision to drop most of the content,
+ * I'm trying to avoid third party libraries (Gson, Jackson, Moshi, etc.)
+ * and simply extract a few values using JSONObject/JSONArray.
+ */
 class SimpleJsonParser @Inject constructor(
     private val factory: AdFactory
 ) : JsonParser {

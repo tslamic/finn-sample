@@ -8,6 +8,13 @@ import me.tadej.finn.repo.factory.SimpleAd
 import java.util.concurrent.Executor
 import javax.inject.Inject
 
+/*
+ * A simple wrapper around FavouritesDatabase & FavouritesDao.
+ *
+ * Because we're trying to work with a generic Ad,
+ * some not-so-pleasing code must be added to make both Room and
+ * FavouritesRepository happy.
+ */
 class SimpleFavouritesRepository @Inject constructor(
     private val executor: Executor,
     database: FavouritesDatabase

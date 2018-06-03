@@ -13,6 +13,7 @@ import me.tadej.finn.model.Ad
 import me.tadej.finn.ui.pojo.AdsFormatter
 import me.tadej.finn.ui.pojo.OnFavouriteClickListener
 
+
 class AdsAdapter(
     private val listener: OnFavouriteClickListener,
     private val formatter: AdsFormatter
@@ -33,6 +34,8 @@ class AdsAdapter(
   override fun onBindViewHolder(holder: AdsViewHolder, position: Int) {
     val ad = ads[position]
 
+    // Ideally, this would be abstracted by an e.g. ImageLoader interface.
+    // But considering we're only using it here, I'll keep it as is.
     val url = formatter.formatUrl(ad)
     Glide.with(holder.itemView).load(url).into(object : SimpleTarget<Drawable>() {
       override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
