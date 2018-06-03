@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.MainActivity">
 
-  <include layout="@layout/content_main" />
+  <include layout="@layout/view_main" />
 
   <android.support.design.widget.NavigationView
       android:id="@+id/navView"

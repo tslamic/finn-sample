@@ -22,24 +22,9 @@
   </android.support.design.widget.AppBarLayout>
 
   <FrameLayout
+      android:id="@+id/content"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-    <fragment
-        android:id="@+id/navigator"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph" />
-
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="center" />
-
-  </FrameLayout>
+      app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>

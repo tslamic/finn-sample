@@ -1,6 +1,6 @@
 <resources>
-  <string name="app_name">finn</string>
+  <string name="app_name">Finn</string>
   <string name="ads">Ads</string>
-  <string name="details">Details</string>
   <string name="favourites">Favourites</string>
+  <string name="error">Oh noes! Something went wrong!</string>
 </resources>
