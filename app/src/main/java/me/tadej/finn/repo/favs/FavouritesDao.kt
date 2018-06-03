@@ -10,12 +10,7 @@ import me.tadej.finn.repo.factory.SimpleAd
 
 @Dao
 interface FavouritesDao {
-  @Query(value = "SELECT * FROM favourites")
-  fun favourites(): LiveData<List<SimpleAd>>
-
-  @Query(value = "SELECT * FROM favourites WHERE id=:id LIMIT 1")
-  fun isFavourite(id: String): Int
-
+  @Query(value = "SELECT * FROM favourites") fun favourites(): LiveData<List<SimpleAd>>
   @Insert(onConflict = REPLACE) fun add(ad: SimpleAd)
   @Delete() fun remove(ad: SimpleAd)
 }

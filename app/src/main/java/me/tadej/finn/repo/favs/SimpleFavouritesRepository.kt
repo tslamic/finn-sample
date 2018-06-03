@@ -5,9 +5,11 @@ import android.arch.lifecycle.Transformations
 import me.tadej.finn.model.Ad
 import me.tadej.finn.repo.FavouritesRepository
 import me.tadej.finn.repo.factory.SimpleAd
+import java.util.concurrent.Executor
 import javax.inject.Inject
 
 class SimpleFavouritesRepository @Inject constructor(
+    private val executor: Executor,
     database: FavouritesDatabase
 ) : FavouritesRepository {
   private val dao = database.dao()
@@ -17,13 +19,11 @@ class SimpleFavouritesRepository @Inject constructor(
         ads.map { it as Ad }.toList()
       })
 
-  override fun isFavourite(ad: Ad): Boolean = dao.isFavourite(ad.id()) > 0
-
-  override fun add(ad: Ad) {
+  override fun add(ad: Ad) = executor.execute {
     dao.add(ad as SimpleAd)
   }
 
-  override fun remove(ad: Ad) {
+  override fun remove(ad: Ad) = executor.execute {
     dao.remove(ad as SimpleAd)
   }
 }
