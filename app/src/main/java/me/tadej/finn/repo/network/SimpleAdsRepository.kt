@@ -19,22 +19,22 @@ class SimpleAdsRepository @Inject constructor(
     private val parser: JsonParser,
     private val client: OkHttpClient
 ) : AdsRepository {
+  private val data = MutableLiveData<Response<List<Ad>>>()
 
   override fun all(page: Int): LiveData<Response<List<Ad>>> {
-    val data = MutableLiveData<Response<List<Ad>>>()
     executor.execute {
-      request(data)
+      val response = request()
+      data.postValue(response)
     }
     return data
   }
 
-  private fun request(data: MutableLiveData<Response<List<Ad>>>) {
+  private fun request(): Response<List<Ad>> {
     val request = Request.Builder()
         .get()
         .url(URL)
         .build()
-
-    val response: Response<List<Ad>> = try {
+    return try {
       client.newCall(request).execute().use { resp ->
         if (resp.isSuccessful) {
           val json = resp.bodyAsString()
@@ -48,8 +48,6 @@ class SimpleAdsRepository @Inject constructor(
     } catch (ex: Exception) {
       Response.failure(ex)
     }
-
-    data.postValue(response)
   }
 
   private fun okhttp3.Response.bodyAsString() = this.body()?.string() ?: ""
