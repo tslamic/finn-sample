@@ -4,9 +4,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import me.tadej.finn.misc.ImageUrlGenerator
 import me.tadej.finn.misc.getCacheSize
-import me.tadej.finn.model.Ad
 import me.tadej.finn.repo.FavouritesRepository
 import me.tadej.finn.repo.favs.FavouritesDatabase
 import me.tadej.finn.repo.favs.SimpleFavouritesRepository
@@ -15,7 +13,6 @@ import okhttp3.OkHttpClient
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 import javax.inject.Singleton
-
 
 @Module
 class AppModule(private val context: Context) {
@@ -32,19 +29,11 @@ class AppModule(private val context: Context) {
         .build()
   }
 
-  @Provides @Singleton fun providesImageUrlGenerator(): ImageUrlGenerator {
-    return object : ImageUrlGenerator {
-      override fun generateUrl(ad: Ad): String {
-        return "https://images.finncdn.no/dynamic/480x360c/" + ad.imageUrl()
-      }
-    }
-  }
-
-  @Provides @Singleton fun providesFavouritesRepository(): FavouritesRepository {
+  @Provides @Singleton fun providesFavouritesRepository(executor: Executor): FavouritesRepository {
     val database = Room.databaseBuilder(context,
         FavouritesDatabase::class.java,
         "favourites"
     ).build()
-    return SimpleFavouritesRepository(database)
+    return SimpleFavouritesRepository(executor, database)
   }
 }
